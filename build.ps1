@@ -67,50 +67,36 @@ Invoke-BuildStep 'Restoring solution packages' { `
     -skip:$SkipRestore `
     -ev +BuildErrors
 
-Invoke-BuildStep 'Set gallery version metadata in AssemblyInfo.cs' {
+Invoke-BuildStep 'Set shared version metadata in AssemblyInfo.cs' {
+        $GalleryAssemblyInfo = 
+            "src\NuGet.Services.Entities\Properties\AssemblyInfo.g.cs",
+            "src\NuGetGallery.Core\Properties\AssemblyInfo.g.cs"
+        $GalleryAssemblyInfo | ForEach-Object {
+            Set-VersionInfo (Join-Path $PSScriptRoot $_) -AssemblyVersion $GalleryAssemblyVersion -PackageVersion $GalleryPackageVersion -Branch $Branch -Commit $CommitSHA 
+        }
+
         $JobsAssemblyInfo =
-            "src\Catalog\Properties\AssemblyInfo.g.cs",
-            "src\CopyAzureContainer\Properties\AssemblyInfo.g.cs",
-            "src\Gallery.CredentialExpiration\Properties\AssemblyInfo.g.cs",
-            "src\Microsoft.PackageManagement.Search.Web\Properties\AssemblyInfo.g.cs",
-            "src\Ng\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Jobs.Auxiliary2AzureSearch\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Jobs.Catalog2AzureSearch\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Jobs.Catalog2Registration\Properties\AssemblyInfo.g.cs",
             "src\NuGet.Jobs.Common\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Jobs.Db2AzureSearch\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Jobs.GitHubIndexer\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Protocol.Catalog\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.AzureSearch\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.Metadata.Catalog.Monitoring\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.Revalidate\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.SearchService.Core\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.V3\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.Services.Validation.Orchestrator\Properties\AssemblyInfo.g.cs",
-            "src\NuGet.SupportRequests.Notifications\Properties\AssemblyInfo.g.cs",
-            "src\NuGetCDNRedirect\Properties\AssemblyInfo.g.cs",
-            "src\PackageHash\Properties\AssemblyInfo.g.cs",
-            "src\PackageLagMonitor\Properties\AssemblyInfo.g.cs",
-            "src\SplitLargeFiles\Properties\AssemblyInfo.g.cs",
-            "src\Stats.AzureCdnLogs.Common\Properties\AssemblyInfo.g.cs",
-            "src\Stats.CDNLogsSanitizer\Properties\AssemblyInfo.g.cs",
-            "src\Stats.CollectAzureChinaCDNLogs\Properties\AssemblyInfo.g.cs",
-            "src\Stats.LogInterpretation\Properties\AssemblyInfo.g.cs",
-            "src\Stats.PostProcessReports\Properties\AssemblyInfo.g.cs",
-            "src\Stats.Warehouse\Properties\AssemblyInfo.g.cs",
-            "src\StatusAggregator\Properties\AssemblyInfo.g.cs",
-            "src\Validation.Common.Job\Properties\AssemblyInfo.g.cs",
-            "src\Validation.ContentScan.Core\Properties\AssemblyInfo.g.cs",
-            "src\Validation.PackageSigning.Core\Properties\AssemblyInfo.g.cs",
-            "src\Validation.PackageSigning.ProcessSignature\Properties\AssemblyInfo.g.cs",
-            "src\Validation.PackageSigning.RevalidateCertificate\Properties\AssemblyInfo.g.cs",
-            "src\Validation.PackageSigning.ValidateCertificate\Properties\AssemblyInfo.g.cs",
-            "src\Validation.ScanAndSign.Core\Properties\AssemblyInfo.g.cs",
-            "src\Validation.Symbols.Core\Properties\AssemblyInfo.g.cs",
-            "src\Validation.Symbols\Properties\AssemblyInfo.g.cs"
-            
+            "src\Validation.Common.Job\Properties\AssemblyInfo.g.cs"
         $JobsAssemblyInfo | ForEach-Object {
             Set-VersionInfo (Join-Path $PSScriptRoot $_) -AssemblyVersion $JobsAssemblyVersion -PackageVersion $JobsPackageVersion -Branch $Branch -Commit $CommitSHA
+        }
+    } `
+    -ev +BuildErrors
+
+Invoke-BuildStep 'Set gallery version metadata in AssemblyInfo.cs' {
+        $GalleryAssemblyInfo = 
+            "src\AccountDeleter\Properties\AssemblyInfo.g.cs",
+            "src\DatabaseMigrationTools\Properties\AssemblyInfo.g.cs",
+            "src\GalleryTools\Properties\AssemblyInfo.g.cs",
+            "src\GitHubVulnerabilities2Db\Properties\AssemblyInfo.g.cs",
+            "src\GitHubVulnerabilities2v3\Properties\AssemblyInfo.g.cs",
+            "src\NuGet.Services.DatabaseMigration\Properties\AssemblyInfo.g.cs",
+            "src\NuGetGallery.Services\Properties\AssemblyInfo.g.cs",
+            "src\NuGetGallery\Properties\AssemblyInfo.g.cs",
+            "src\VerifyMicrosoftPackage\Properties\AssemblyInfo.g.cs"
+        $GalleryAssemblyInfo | ForEach-Object {
+            Set-VersionInfo (Join-Path $PSScriptRoot $_) -AssemblyVersion $GalleryAssemblyVersion -PackageVersion $GalleryPackageVersion -Branch $Branch -Commit $CommitSHA 
         }
     } `
     -skip:$SkipGallery `

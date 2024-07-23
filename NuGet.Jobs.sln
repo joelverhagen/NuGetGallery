@@ -229,6 +229,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".pipelines", ".pipelines", 
 		.pipelines\Release-trigger.yml = .pipelines\Release-trigger.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGet.Services.Entities", "src\NuGet.Services.Entities\NuGet.Services.Entities.csproj", "{9881AA2D-41ED-4920-8BD2-3FDE71B93D5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGetGallery.Core", "src\NuGetGallery.Core\NuGetGallery.Core.csproj", "{D555268C-A80A-4B0B-865C-06BAC2ABDD05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -569,6 +573,14 @@ Global
 		{711CD5DE-F139-4C0C-B75F-3E9C01EC5AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{711CD5DE-F139-4C0C-B75F-3E9C01EC5AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{711CD5DE-F139-4C0C-B75F-3E9C01EC5AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9881AA2D-41ED-4920-8BD2-3FDE71B93D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9881AA2D-41ED-4920-8BD2-3FDE71B93D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9881AA2D-41ED-4920-8BD2-3FDE71B93D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9881AA2D-41ED-4920-8BD2-3FDE71B93D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D555268C-A80A-4B0B-865C-06BAC2ABDD05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D555268C-A80A-4B0B-865C-06BAC2ABDD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D555268C-A80A-4B0B-865C-06BAC2ABDD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D555268C-A80A-4B0B-865C-06BAC2ABDD05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
