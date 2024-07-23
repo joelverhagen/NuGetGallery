@@ -66,14 +66,14 @@ extends:
           displayName: Build
           inputs:
             scriptName: $(NuGetGalleryPath)\build.ps1
-            arguments: -Configuration $(BuildConfiguration) -BuildNumber $(Build.BuildId) -GalleryAssemblyVersion $(GalleryAssemblyVersion) -GalleryPackageVersion $(GalleryPackageVersion) -Branch $(NuGetGalleryBranch) -CommitSHA $(Build.SourceVersion)
+            arguments: -Configuration $(BuildConfiguration) -BuildNumber $(Build.BuildId) -SkipJobs -GalleryAssemblyVersion $(GalleryAssemblyVersion) -GalleryPackageVersion $(GalleryPackageVersion) -Branch $(NuGetGalleryBranch) -CommitSHA $(Build.SourceVersion)
             workingFolder: $(NuGetGalleryPath)
         - task: PowerShell@1
           name: PowerShell_2
           displayName: Run unit tests
           inputs:
             scriptName: $(NuGetGalleryPath)\test.ps1
-            arguments: -Configuration $(BuildConfiguration) -BuildNumber $(Build.BuildId)
+            arguments: -Configuration $(BuildConfiguration) -BuildNumber $(Build.BuildId) -SkipJobs
             workingFolder: $(NuGetGalleryPath)
         - task: PublishTestResults@1
           name: PublishTestResults_3
