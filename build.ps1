@@ -160,11 +160,11 @@ Invoke-BuildStep 'Building gallery solution' {
     -ev +BuildErrors
 
 Invoke-BuildStep 'Building jobs solution' { 
-        $SolutionPath = Join-Path $PSScriptRoot "NuGet.Job.sln"
+        $SolutionPath = Join-Path $PSScriptRoot "NuGet.Jobs.sln"
         Build-Solution -Configuration $Configuration -BuildNumber $BuildNumber -SolutionPath $SolutionPath -SkipRestore:$SkipRestore `
     } `
     -skip:$SkipJobs `
-    -ev +BuildErrors 
+    -ev +BuildErrors
 
 Invoke-BuildStep 'Building jobs functional test solution' { 
         $SolutionPath = Join-Path $PSScriptRoot "tests\NuGetServicesMetadata.FunctionalTests.sln"
