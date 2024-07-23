@@ -58,6 +58,10 @@
       <Project>{1745a383-d0be-484b-81eb-27b20f6ac6c5}</Project>
       <Name>NuGet.Services.Metadata.Catalog.Monitoring</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
@@ -53,6 +53,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Validation.PackageSigning.RevalidateCertificate\Validation.PackageSigning.RevalidateCertificate.csproj">
       <Project>{ea32e1e5-7e7d-44e6-b496-43e1fede9400}</Project>
       <Name>Validation.PackageSigning.RevalidateCertificate</Name>

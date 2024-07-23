@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
@@ -64,9 +64,17 @@
     <Compile Include="TestData\TestResources.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NuGet.Services.Revalidate\NuGet.Services.Revalidate.csproj">
       <Project>{1963909d-8be3-4cb8-b57e-ab6a8cb22fed}</Project>
       <Name>NuGet.Services.Revalidate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation.PackageSigning.Helpers\Tests.ContextHelpers.csproj">
       <Project>{2c5be067-adfd-49e3-ba9f-13a74436e5db}</Project>

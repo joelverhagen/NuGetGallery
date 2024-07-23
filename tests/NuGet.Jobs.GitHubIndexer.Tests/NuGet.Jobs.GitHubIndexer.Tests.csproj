@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
@@ -61,6 +61,10 @@
     <ProjectReference Include="..\..\src\NuGet.Jobs.GitHubIndexer\NuGet.Jobs.GitHubIndexer.csproj">
       <Project>{42b1eb66-58f9-4d9a-8e23-ff12cbf5d643}</Project>
       <Name>NuGet.Jobs.GitHubIndexer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

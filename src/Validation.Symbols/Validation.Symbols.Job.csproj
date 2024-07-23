@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <Import Project="..\..\sign.thirdparty.props" />
@@ -72,9 +72,17 @@
       <Project>{4b4b1efb-8f33-42e6-b79f-54e7f3293d31}</Project>
       <Name>NuGet.Jobs.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NuGet.Services.Validation.Orchestrator\NuGet.Services.Validation.Orchestrator.csproj">
       <Project>{e6d094fb-9068-4578-b176-116f97e7506b}</Project>
       <Name>NuGet.Services.Validation.Orchestrator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation.Common.Job\Validation.Common.Job.csproj">
       <Project>{fa87d075-a934-4443-8d0b-5db32640b6d7}</Project>

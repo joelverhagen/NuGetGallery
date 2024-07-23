@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
@@ -81,6 +81,10 @@
     <ProjectReference Include="..\..\src\NuGet.Services.V3\NuGet.Services.V3.csproj">
       <Project>{C3F9A738-9759-4B2B-A50D-6507B28A659B}</Project>
       <Name>NuGet.Services.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NuGet.Services.V3.Tests\NuGet.Services.V3.Tests.csproj">
       <Project>{ccb4d5ef-ac84-449d-ac6e-0a0ad295483a}</Project>

@@ -147,6 +147,10 @@
       <Project>{e97f23b8-ecb0-4afa-b00c-015c39395fef}</Project>
       <Name>NuGet.Services.Metadata.Catalog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" />

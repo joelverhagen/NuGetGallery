@@ -323,6 +323,10 @@
       <Project>{d44c2e89-2d98-44bd-8712-8ccbe4e67c9c}</Project>
       <Name>NuGet.Protocol.Catalog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NgTests\NgTests.csproj">
       <Project>{05c1c78a-9966-4922-9065-a099023e7366}</Project>
       <Name>NgTests</Name>

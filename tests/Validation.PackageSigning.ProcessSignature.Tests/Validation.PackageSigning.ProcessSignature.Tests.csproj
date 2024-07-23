@@ -62,6 +62,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Validation.Common.Job\Validation.Common.Job.csproj">
       <Project>{fa87d075-a934-4443-8d0b-5db32640b6d7}</Project>
       <Name>Validation.Common.Job</Name>

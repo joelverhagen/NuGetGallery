@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
@@ -76,9 +76,17 @@
       <Project>{D44C2E89-2D98-44BD-8712-8CCBE4E67C9C}</Project>
       <Name>NuGet.Protocol.Catalog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NuGet.Services.V3\NuGet.Services.V3.csproj">
       <Project>{c3f9a738-9759-4b2b-a50d-6507b28a659b}</Project>
       <Name>NuGet.Services.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NuGet.Protocol.Catalog.Tests\NuGet.Protocol.Catalog.Tests.csproj">
       <Project>{1f3bc053-796c-4a35-88f4-955a0f142197}</Project>

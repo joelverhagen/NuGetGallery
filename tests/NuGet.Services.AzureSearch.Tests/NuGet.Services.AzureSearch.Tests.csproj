@@ -112,9 +112,17 @@
       <Project>{1a53fe3d-8041-4773-942f-d73aef5b82b2}</Project>
       <Name>NuGet.Services.AzureSearch</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
+      <Project>{9881aa2d-41ed-4920-8bd2-3fde71b93d5a}</Project>
+      <Name>NuGet.Services.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NuGet.Services.V3\NuGet.Services.V3.csproj">
       <Project>{c3f9a738-9759-4b2b-a50d-6507b28a659b}</Project>
       <Name>NuGet.Services.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NuGet.Services.V3.Tests\NuGet.Services.V3.Tests.csproj">
       <Project>{ccb4d5ef-ac84-449d-ac6e-0a0ad295483a}</Project>

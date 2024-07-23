@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="..\..\sign.thirdparty.props" />
@@ -89,6 +89,10 @@
     <Compile Include="Telemetry\AccountDeleteTelemetryService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NuGet.Jobs.Common\NuGet.Jobs.Common.csproj">
+      <Project>{90197801-ce56-4a3b-b6de-112774010efa}</Project>
+      <Name>NuGet.Jobs.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
       <Project>{6262f4fc-29be-4226-b676-db391c89d396}</Project>
       <Name>NuGet.Services.Entities</Name>
@@ -101,13 +105,16 @@
       <Project>{c7d5e850-33fa-4ec5-8d7f-b1c8dd5d48f9}</Project>
       <Name>NuGetGallery.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Validation.Common.Job\Validation.Common.Job.csproj">
+      <Project>{ef94c7a0-e675-45b5-af19-ea7b1d5335c1}</Project>
+      <Name>Validation.Common.Job</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MicroBuild.Core">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="NuGet.Services.Validation.Common.Job" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <Import Project="..\..\sign.thirdparty.props" />
@@ -70,6 +70,10 @@
     <ProjectReference Include="..\NuGet.Jobs.Common\NuGet.Jobs.Common.csproj">
       <Project>{4b4b1efb-8f33-42e6-b79f-54e7f3293d31}</Project>
       <Name>NuGet.Jobs.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stats.AzureCdnLogs.Common\Stats.AzureCdnLogs.Common.csproj">
       <Project>{f72c31a7-424d-48c6-924c-ebfd4be0918b}</Project>

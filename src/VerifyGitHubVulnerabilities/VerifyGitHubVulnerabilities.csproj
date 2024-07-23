@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="..\..\sign.thirdparty.props" />
@@ -61,12 +61,13 @@
     <None Include="VerifyGitHubVulnerabilities.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NuGet.Jobs.Common" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GitHubVulnerabilities2Db\GitHubVulnerabilities2Db.csproj">
       <Project>{26bb718a-e1c1-4e70-9008-fb8ee7a7f7e5}</Project>
       <Name>GitHubVulnerabilities2Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NuGet.Jobs.Common\NuGet.Jobs.Common.csproj">
+      <Project>{90197801-ce56-4a3b-b6de-112774010efa}</Project>
+      <Name>NuGet.Jobs.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\NuGet.Services.Entities\NuGet.Services.Entities.csproj">
       <Project>{6262f4fc-29be-4226-b676-db391c89d396}</Project>

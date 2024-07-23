@@ -115,6 +115,10 @@
       <Project>{C3F9A738-9759-4B2B-A50D-6507B28A659B}</Project>
       <Name>NuGet.Services.V3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NuGetGallery.Core\NuGetGallery.Core.csproj">
+      <Project>{d555268c-a80a-4b0b-865c-06bac2abdd05}</Project>
+      <Name>NuGetGallery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
