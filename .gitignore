@@ -400,11 +400,11 @@ FodyWeavers.xsd
 #######################
 # Repository specific #
 #######################
+.nuget/
 build/
 tools/
 Results.*.xml
 AssemblyInfo.*.cs
-.nuget/.marker.v*
 nuget.exe
 
 # Functional test results

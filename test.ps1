@@ -3,6 +3,7 @@ param (
     [ValidateSet("debug", "release")]
     [string]$Configuration = 'debug',
     [int]$BuildNumber,
+    [switch]$SkipCommon,
     [switch]$SkipGallery,
     [switch]$SkipJobs
 )
@@ -27,6 +28,8 @@ if (-not $BuildNumber) {
 Trace-Log "Build #$BuildNumber started at $startTime"
 
 $TestErrors = @()
+$CommonSolution = Join-Path $PSScriptRoot "NuGet.Server.Common.sln"
+$CommonProjects = Get-SolutionProjects $CommonSolution
 $GallerySolution = Join-Path $PSScriptRoot "NuGetGallery.sln"
 $GalleryProjects = Get-SolutionProjects $GallerySolution
 $JobsSolution = Join-Path $PSScriptRoot "NuGet.Jobs.sln"
@@ -37,20 +40,37 @@ $ExcludeTestProjects =
 Invoke-BuildStep 'Cleaning test results' { Clear-Tests } `
     -ev +TestErrors
 
-Invoke-BuildStep 'Running gallery tests' {
-        $GalleryTestProjects = $GalleryProjects | Where-Object { $_.IsTest }
+$TestCounter = @{ Count = 0 }
+	
+Invoke-BuildStep 'Running common tests' {
+        $CommonTestProjects = $CommonProjects | Where-Object { $_.IsTest }
 
-        $TestCount = 0
-        
-        $GalleryTestProjects | ForEach-Object {
-            $TestResultFile = Join-Path $PSScriptRoot "Results.$TestCount.xml"
+        $CommonTestProjects | ForEach-Object {
+            $TestResultFile = Join-Path $PSScriptRoot "Results.$($TestCounter.Count).xml"
             Trace-Log "Testing $($_.Path)"
             dotnet test $_.Path --no-restore --no-build --configuration $Configuration "-l:trx;LogFileName=$TestResultFile"
             if (-not (Test-Path $TestResultFile)) {
                 Write-Error "The test run failed to produce a result file";
                 exit 1;
             }
-            $TestCount++
+            $TestCounter.Count++
+        }
+    } `
+    -skip:$SkipCommon `
+    -ev +TestErrors
+
+Invoke-BuildStep 'Running gallery tests' {
+        $GalleryTestProjects = $GalleryProjects | Where-Object { $_.IsTest }
+        
+        $GalleryTestProjects | ForEach-Object {
+            $TestResultFile = Join-Path $PSScriptRoot "Results.$($TestCounter.Count).xml"
+            Trace-Log "Testing $($_.Path)"
+            dotnet test $_.Path --no-restore --no-build --configuration $Configuration "-l:trx;LogFileName=$TestResultFile"
+            if (-not (Test-Path $TestResultFile)) {
+                Write-Error "The test run failed to produce a result file";
+                exit 1;
+            }
+            $TestCounter.Count++
         }
 
         Write-Host "Ensuring the EntityFramework version can be discovered."
@@ -63,18 +83,16 @@ Invoke-BuildStep 'Running jobs tests' {
         $JobsTestProjects = $JobsProjects `
             | Where-Object { $_.IsTest } `
             | Where-Object { $ExcludeTestProjects -notcontains $_.RelativePath }
-
-        $TestCount = 0
         
         $JobsTestProjects | ForEach-Object {
-            $TestResultFile = Join-Path $PSScriptRoot "Results.$TestCount.xml"
+            $TestResultFile = Join-Path $PSScriptRoot "Results.$($TestCounter.Count).xml"
             Trace-Log "Testing $($_.Path)"
             dotnet test $_.Path --no-restore --no-build --configuration $Configuration "-l:trx;LogFileName=$TestResultFile"
             if (-not (Test-Path $TestResultFile)) {
                 Write-Error "The test run failed to produce a result file";
                 exit 1;
             }
-            $TestCount++
+            $TestCounter.Count++
         }
     } `
     -skip:$SkipJobs `

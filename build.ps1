@@ -5,6 +5,9 @@ param (
     [int]$BuildNumber,
     [switch]$SkipRestore,
     [switch]$CleanCache,
+    [string]$CommonAssemblyVersion = '3.0.0',
+    [string]$CommonPackageVersion = '3.0.0-zlocal',
+    [switch]$SkipCommon,
     [string]$GalleryAssemblyVersion = '4.4.5',
     [string]$GalleryPackageVersion = '4.4.5-zlocal',
     [switch]$SkipGallery,
@@ -13,7 +16,6 @@ param (
     [switch]$SkipJobs,
     [string]$Branch,
     [string]$CommitSHA,
-    [string]$BuildBranchCommit = 'caca1e96b175172a623e67a3bd53d2f7a78f6c7e', #DevSkim: ignore DS173237. Not a secret/token. It is a commit hash.
     [string]$VerifyMicrosoftPackageVersion = $null
 )
 
@@ -27,12 +29,7 @@ trap {
     exit 1
 }
 
-if (-not (Test-Path "$PSScriptRoot/build")) {
-    New-Item -Path "$PSScriptRoot/build" -ItemType "directory"
-}
-
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/NuGet/ServerCommon/$BuildBranchCommit/build/init.ps1" -OutFile "$PSScriptRoot/build/init.ps1"
-. "$PSScriptRoot/build/init.ps1" -BuildBranchCommit $BuildBranchCommit
+. "$PSScriptRoot\build\common.ps1"
 
 Write-Host ("`r`n" * 3)
 Trace-Log ('=' * 60)
@@ -44,6 +41,8 @@ if (-not $BuildNumber) {
 Trace-Log "Build #$BuildNumber started at $startTime"
 
 $BuildErrors = @()
+$CommonSolution = Join-Path $PSScriptRoot "NuGet.Server.Common.sln"
+$CommonProjects = Get-SolutionProjects $CommonSolution
 $GallerySolution = Join-Path $PSScriptRoot "NuGetGallery.sln"
 $GalleryProjects = Get-SolutionProjects $GallerySolution
 $JobsSolution = Join-Path $PSScriptRoot "NuGet.Jobs.sln"
@@ -71,6 +70,15 @@ Invoke-BuildStep 'Restoring solution packages' {
     -skip:$SkipRestore `
     -ev +BuildErrors
 
+Invoke-BuildStep 'Setting common version metadata in AssemblyInfo.cs' {
+        $CommonProjects | Where-Object { !$_.IsTest } | ForEach-Object {
+            $Path = Join-Path $_.Directory "Properties\AssemblyInfo.g.cs"
+            Set-VersionInfo $Path -AssemblyVersion $CommonAssemblyVersion -PackageVersion $CommonPackageVersion -Branch $Branch -Commit $CommitSHA
+        }
+    } `
+    -skip:$SkipCommon `
+    -ev +BuildErrors
+
 Invoke-BuildStep 'Set gallery version metadata in AssemblyInfo.cs' {
         $GalleryProjects | Where-Object { !$_.IsTest } | ForEach-Object {
             $Path = Join-Path $_.Directory "Properties\AssemblyInfo.g.cs"
@@ -87,6 +95,12 @@ Invoke-BuildStep 'Setting job version metadata in AssemblyInfo.cs' {
         }
     } `
     -skip:$SkipJobs `
+    -ev +BuildErrors
+
+Invoke-BuildStep 'Building common solution' {
+        Build-Solution -Configuration $Configuration -BuildNumber $BuildNumber -SolutionPath $CommonSolution -SkipRestore:$SkipRestore
+    } `
+    -skip:$SkipCommon `
     -ev +BuildErrors
 
 Invoke-BuildStep 'Building gallery solution' { 
@@ -111,6 +125,15 @@ Invoke-BuildStep 'Building jobs functional test solution' {
 Invoke-BuildStep 'Signing the binaries' {
         Sign-Binaries -Configuration $Configuration -BuildNumber $BuildNumber
     } `
+    -ev +BuildErrors
+
+Invoke-BuildStep 'Creating common artifacts' {
+        $CommonPackages = $CommonProjects | Where-Object { !$_.IsTest } | Where-Object { $_.RelativePath -notlike "tools*" } 
+        $CommonPackages | ForEach-Object {
+            New-ProjectPackage $_.Path -Configuration $Configuration -BuildNumber $BuildNumber -Version $CommonPackageVersion
+        }
+    } `
+    -skip:$SkipCommon `
     -ev +BuildErrors
 
 Invoke-BuildStep 'Creating gallery artifacts' { `
